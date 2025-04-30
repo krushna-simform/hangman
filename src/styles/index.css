@@ -9,4 +9,86 @@
 :root {
     background-color: black;
     color: white;
+
+    --primary-color: rebeccapurple;
+}
+
+main > div {
+    margin: 4rem 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+}
+
+.gauess-section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    gap: 3rem;
+}
+
+#wordDisplay {
+    font-size: 2rem;
+    letter-spacing: 0.4rem;
+}
+
+#letterInput {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+#word-display,
+#keyboard {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#keyboard {
+    max-width: 45rem;
+    margin: auto;
+}
+
+.letter {
+    font-size: 2rem;
+    padding: 0.7rem;
+    border-bottom: 2px solid black;
+    width: 1.5rem;
+    text-align: center;
+}
+
+#clue-section {
+    font-size: 1.5rem;
+}
+
+button {
+    font-size: 1.2rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+
+    transition: 1s ease-in-out;
+}
+
+button:disabled {
+    background-color: red;
+}
+
+#status {
+    font-size: 2rem;
 }
