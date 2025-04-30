@@ -37,10 +37,6 @@ export class HangmanUI {
         this.renderKeyboard();
         this.renderStatus();
         this.newGame();
-
-        console.log('first');
-
-        console.log(this.game.getState());
     }
 
     private renderWord() {
