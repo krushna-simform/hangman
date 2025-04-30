@@ -1,10 +1,12 @@
 import { HangmanGame } from '../controller/game';
-import { saveGame } from '../model/storage';
+import { saveGame, clearGame } from '../model/storage';
+import words from '../model/word';
 import template from './template';
 
 export class HangmanUI {
     private game: HangmanGame;
     private root = document.getElementById('main-root') as HTMLDivElement;
+    private figureParts: HTMLElement[];
 
     constructor(game: HangmanGame) {
         this.game = game;
@@ -14,6 +16,11 @@ export class HangmanUI {
         }
 
         this.root.append(template.render());
+
+        this.figureParts = Array.from(
+            document.querySelectorAll<HTMLElement>('.part')
+        );
+
         this.render();
         this.bindKeyboard();
     }
@@ -21,9 +28,19 @@ export class HangmanUI {
     private render() {
         (document.getElementById('clue-section') as HTMLDivElement).innerText =
             `Clue: ${this.game.getState().clue}`;
+
+        const wrongGuesses = 6 - this.game.getState().lives;
+        this.figureParts.forEach((part, index) => {
+            part.style.display = index < wrongGuesses ? 'block' : 'none';
+        });
         this.renderWord();
         this.renderKeyboard();
         this.renderStatus();
+        this.newGame();
+
+        console.log('first');
+
+        console.log(this.game.getState());
     }
 
     private renderWord() {
@@ -80,6 +97,10 @@ export class HangmanUI {
     }
 
     private bindKeyboard() {
+        if (this.game.isLost() || this.game.isWon()) {
+            return;
+        }
+
         window.addEventListener('keydown', (e) => {
             if (/^[a-z]$/i.test(e.key)) {
                 this.game.guess(e.key);
@@ -87,5 +108,25 @@ export class HangmanUI {
                 this.render();
             }
         });
+    }
+
+    private newGame() {
+        const newGameButton = document.getElementById('new-game-button');
+
+        if (!newGameButton) {
+            throw new Error('new game button element is not selected');
+        }
+
+        newGameButton.onclick = () => {
+            clearGame();
+
+            const random = words[Math.floor(Math.random() * words.length)];
+            this.game = new HangmanGame(random);
+
+            // Ensure the keyboard resets
+            this.render();
+        };
+
+        newGameButton.blur();
     }
 }
