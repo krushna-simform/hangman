@@ -11,6 +11,7 @@
     color: white;
 
     --primary-color: rebeccapurple;
+    --secondary-color: rgb(112, 76, 148);
 }
 
 main > div {
@@ -32,8 +33,7 @@ header h1 {
 .gauess-section {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    text-align: center;
+    align-items: center;
     gap: 3rem;
 }
 
@@ -82,13 +82,125 @@ button {
     border: none;
     font-size: 1.5rem;
 
-    transition: 1s ease-in-out;
+    transition: 1s background ease-in-out;
 }
 
 button:disabled {
     background-color: red;
 }
 
+#new-game-button {
+    background: var(--primary-color);
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    width: 7rem;
+}
+
+.hangman-grapic-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
 #status {
     font-size: 2rem;
+}
+
+#hangman-container {
+    position: relative;
+    width: 12.5rem;
+    height: 15.625rem;
+}
+
+#hang .base {
+    width: 100%;
+    height: 0.625rem;
+    background: var(--primary-color);
+    position: absolute;
+    bottom: 0;
+}
+
+#hang .pole {
+    width: 0.625rem;
+    height: 14.325rem;
+    background: var(--primary-color);
+    position: absolute;
+    bottom: 0.625rem;
+    left: 3.125rem;
+}
+
+#hang .beam {
+    width: 6.25rem;
+    height: 0.625rem;
+    background: var(--primary-color);
+    position: absolute;
+    top: 0;
+    left: 3.125rem;
+}
+
+#hang .rope {
+    width: 0.125rem;
+    height: 1.875rem;
+    background: var(--primary-color);
+    position: absolute;
+    top: 0.625rem;
+    left: 9.063rem;
+}
+
+#figure .part {
+    display: none;
+    position: absolute;
+    background: #fff;
+}
+
+.head {
+    width: 1.875rem;
+    height: 1.875rem;
+    border-radius: 50%;
+    left: 8.125rem;
+    top: 2.5rem;
+}
+
+.body {
+    width: 0.25rem;
+    height: 3.125rem;
+    left: 9.063rem;
+    top: 4.375rem;
+}
+
+.left-arm {
+    width: 1.875rem;
+    height: 0.25rem;
+    top: 5rem;
+    left: 7.188rem;
+    transform: rotate(-30deg);
+    transform-origin: right;
+}
+
+.right-arm {
+    width: 1.875rem;
+    height: 4px;
+    top: 80px;
+    left: 145px;
+    transform: rotate(30deg);
+    transform-origin: left;
+}
+
+.left-leg {
+    width: 1.875rem;
+    height: 0.25rem;
+    top: 7.5rem;
+    left: 7.188rem;
+    transform: rotate(-30deg);
+    transform-origin: right;
+}
+
+.right-leg {
+    width: 1.875rem;
+    height: 0.25rem;
+    top: 7.5rem;
+    left: 9.063rem;
+    transform: rotate(30deg);
+    transform-origin: left;
 }
